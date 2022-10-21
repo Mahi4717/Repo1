@@ -4,6 +4,11 @@ files:
   - source: /
     destination: /var/www/html
     overwrite: true
+permissions:
+  - object: /
+      pattern: "**"
+      owner: root
+      group: root
 hooks:
   BeforeInstall:
     - location: scripts/install_dependencies.sh
@@ -14,9 +19,9 @@ hooks:
       timeout: 300
       runas: root
     - location: scripts/start_server.sh
-      timeout: 30
+      timeout: 300
       runas: root
   ApplicationStop:
     - location: scripts/stop_server.sh
-      timeout: 30
+      timeout: 300
       runas: root
